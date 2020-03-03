@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PokemonCard = ({ id, name, types, height }) => {
+const PokemonCard = ({ id, name, types, height, weight }) => {
     console.log(types)
     console.log()
     const callGeneral = async () => {
@@ -24,7 +24,9 @@ const PokemonCard = ({ id, name, types, height }) => {
             })}
             </div>
             <div>height: {height}</div>
+            <div>weight: {weight}</div>
             <div>general: {}</div>
+
         </div >
     )
 }

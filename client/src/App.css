@@ -2,3 +2,8 @@
   margin: 5%;
   font-family: 'Press Start 2P', 'serif';
 }
+
+img {
+  height: 100px;
+  width: 100px;
+}

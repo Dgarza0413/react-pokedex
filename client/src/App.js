@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Grid from '@material-ui/core/Grid';
 
+import InputForm from './components/Form/InputForm';
 import StatTable from './components/Table/StatTable';
 import PokemonCard from './components/Card/PokemonCard';
 import MoveList from './components/Lists/MoveList';
@@ -42,42 +43,38 @@ function App() {
     <div className="body">
       <div className="nes-container with-title">
         <h1 className="title">PokeDex</h1>
-        <progress
-          className="nes-progress"
-          value="90"
-          max="100"
-        ></progress>
-        <div className="nes-field">
-          <label>Enter PokeMon</label>
-          <input
-            type="text"
-            id="name_field"
-            onChange={handleChange}
-            className="nes-input nes-pointer" />
-        </div>
-        <button
-          type="button"
-          name="pokemon-name-btn"
-          className="nes-btn is-primary"
-          onClick={getPokemon}
-        >
-          Primary
-        </button>
-        <button
-          type="button"
-          className="nes-btn is-disabled nes-pointer"
-        >
-          Disabled
-           </button>
-        <PokemonCard id={data.id || ''}
-          name={data.name}
-          types={data.types || []}
-          height={data.height}
-        />
-        <StatTable stats={data.stats || []} />
-        <MoveList abilities={data.abilities || []}
-          moves={data.moves || []}
-        />
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <InputForm
+              handleClick={handleClick}
+              handleChange={handleChange}
+              getPokemon={getPokemon}
+            />
+          </Grid>
+          <Grid item xs={6}>
+
+            <PokemonCard id={data.id || ''}
+              name={data.name}
+              types={data.types || []}
+              height={data.height}
+              weight={data.weight}
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+
+            <StatTable
+              stats={data.stats || []}
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+            <MoveList abilities={data.abilities || []}
+              moves={data.moves || []}
+            />
+          </Grid>
+
+        </Grid>
       </div>
     </div>
   );
