@@ -5,11 +5,16 @@ const MoveList = ({ abilities, moves }) => {
     return (
         <div className="nes-container with-title">
             <h3 className="title">moves/abilities</h3>
-            {abilities.map(e => {
-                return (
-                    <div>{e.ability.name}</div>
-                )
-            })}
+            <div className="lists">
+                <ul class="nes-list is-disc">
+
+                    {abilities.map(e => {
+                        return (
+                            <li>{e.ability.name}</li>
+                        )
+                    })}
+                </ul>
+            </div>
             {moves.map(e => {
                 return (
                     <>{e.move.name} </>
