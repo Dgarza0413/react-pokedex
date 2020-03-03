@@ -1,7 +1,5 @@
 import React from 'react'
 
-import ProgressBar from '../Ui/ProgressBar';
-
 const StatTable = ({ stats }) => {
     console.log(stats)
     return (
@@ -13,6 +11,7 @@ const StatTable = ({ stats }) => {
                         <tr>
                             <th>Stat Name</th>
                             <th>#</th>
+                            <th>level</th>
                         </tr>
                     </thead> : ""}
                     {stats.map(e => {
@@ -26,9 +25,9 @@ const StatTable = ({ stats }) => {
                                         <td>
                                             {e.base_stat}
                                         </td>
-                                        {/* <td> */}
-                                        <ProgressBar value={e.base_stat} />
-                                        {/* </td> */}
+                                        <td>
+                                            <progress className="nes-progress" value={e.base_stat} max="100"></progress>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </>

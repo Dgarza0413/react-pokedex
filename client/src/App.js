@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import Grid from '@material-ui/core/Grid';
+
 import StatTable from './components/Table/StatTable';
 import PokemonCard from './components/Card/PokemonCard';
+import MoveList from './components/Lists/MoveList';
 import './App.css';
 
 function App() {
@@ -35,11 +38,10 @@ function App() {
 
   }
 
-
-  https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png
   return (
     <div className="body">
-      <div className="nes-container with-title is-centered">
+      <div className="nes-container with-title">
+        <h1 className="title">PokeDex</h1>
         <progress
           className="nes-progress"
           value="90"
@@ -67,8 +69,15 @@ function App() {
         >
           Disabled
            </button>
-        <PokemonCard id={data.id || ''} />
+        <PokemonCard id={data.id || ''}
+          name={data.name}
+          types={data.types || []}
+          height={data.height}
+        />
         <StatTable stats={data.stats || []} />
+        <MoveList abilities={data.abilities || []}
+          moves={data.moves || []}
+        />
       </div>
     </div>
   );
