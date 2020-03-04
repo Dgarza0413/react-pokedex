@@ -7,3 +7,24 @@ img {
   height: 100px;
   width: 100px;
 }
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+nav > a {
+  margin: 5px 5px;
+  padding: 16px 8px;
+  list-style: none;
+  color:black;
+}
+
+nav > a:hover {
+  background-color: black;
+  color: white;
+  text-decoration-line: none;
+}
+

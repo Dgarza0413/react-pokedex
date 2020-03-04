@@ -2,7 +2,6 @@ import React from 'react'
 
 const PokemonCard = ({ id, name, types, height, weight }) => {
     console.log(types)
-    console.log()
     const callGeneral = async () => {
         try {
             const url = ``
