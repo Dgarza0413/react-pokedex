@@ -1,4 +1,5 @@
 import React from 'react'
+import baseUrl from '../utils/baseURL'
 
 const search = () => {
     return (
