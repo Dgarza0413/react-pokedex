@@ -5,16 +5,16 @@ import baseUrl from '../../utils/baseURL';
 
 import '../../App.css'
 
-const PokemonCard = ({ id, name, types, height, weight, handleIncrement }) => {
+const PokemonCard = ({ id, name, types, height, weight, handleIncrement, sprites }) => {
     return (
         <div className="nes-container with-title">
             <h3 className="title">Pokemon</h3>
             {name &&
                 <>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} >
                         <Grid container item xs={12} sm={6}>
                             <Grid item xs={12}>
-                                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} />
+                                <img src={sprites} />
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="text-center">{name}</div>

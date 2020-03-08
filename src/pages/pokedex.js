@@ -8,6 +8,7 @@ import StatTable from '../components/Table/StatTable';
 import PokemonCard from '../components/Card/PokemonCard';
 import MoveList from '../components/Lists/MoveList';
 import NavBar from '../components/NavBar/NavBar';
+import PokemonMap from '../components/Map/Map';
 
 const Pokedex = () => {
     const [data, setData] = useState([])
@@ -23,15 +24,11 @@ const Pokedex = () => {
 
     const handleChange = (event) => {
         setValue(event.target.value)
-        console.log(event.target.value)
     }
 
     const handleClick = (event) => {
         event.preventDefault()
-        console.log("form submitted")
         setValue(event.target.value)
-        console.log(value)
-        console.log(event.target)
     }
 
     const handleIncrement = (event) => {
@@ -48,7 +45,7 @@ const Pokedex = () => {
             const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${value}/`
             const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${value}/`
             const pokemonRes = await axios.get(pokemonUrl)
-            const speciesRes = await axios.get(speciesUrl)
+            // const speciesRes = await axios.get(speciesUrl)
             setData(pokemonRes.data)
             // setData(speciesRes.data)
         } catch (error) {
@@ -59,7 +56,13 @@ const Pokedex = () => {
     return (
         <div className="nes-container with-title">
             <h1 className="title">PokeDex</h1>
-            <Grid container spacing={3}>
+            <Grid
+                container
+                spacing={3}
+                alignItems="stretch"
+            // justify="space-evenly"
+            // direction="row"
+            >
                 <Grid item xs={12}>
                     <InputForm
                         handleClick={handleClick}
@@ -74,6 +77,7 @@ const Pokedex = () => {
                         types={data.types || []}
                         height={data.height}
                         weight={data.weight}
+                        // sprites={data.sprites.front_default}
                         handleIncrement={handleIncrement}
                     />
                 </Grid>
@@ -89,6 +93,9 @@ const Pokedex = () => {
                         abilities={data.abilities || []}
                         moves={data.moves || []}
                     />
+                </Grid>
+                <Grid item xs={12}>
+                    <PokemonMap />
                 </Grid>
             </Grid>
         </div>

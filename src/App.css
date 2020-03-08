@@ -36,3 +36,7 @@ table {
 .text-center {
   text-align: center;
 }
+
+.card {
+  width: 430px;
+}

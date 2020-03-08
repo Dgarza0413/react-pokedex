@@ -8,6 +8,25 @@ const InputForm = ({ handleChange, handleClick }) => {
         <>
             <Grid>
                 <div className="nes-field">
+
+                    {/* <label>
+                        <input type="radio" class="nes-radio" name="answer" />
+                        <span>Kanto</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" class="nes-radio" name="answer" />
+                        <span>Johto</span>
+                    </label>
+                    <label>
+                        <input type="radio" class="nes-radio" name="answer" />
+                        <span>Hoenn</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" class="nes-radio" name="answer" />
+                        <span>Sinnoh</span>
+                    </label> */}
                     <form onSubmit={handleClick}>
                         <label>Enter PokeMon</label>
                         <input
