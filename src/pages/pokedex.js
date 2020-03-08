@@ -11,13 +11,10 @@ import NavBar from '../components/NavBar/NavBar';
 import PokemonMap from '../components/Map/Map';
 
 const Pokedex = () => {
-    const [data, setData] = useState([])
     const [value, setValue] = useState("")
-    const [pokemon, setPokemon] = useState("pikachu")
+    const [pokemon, setPokemon] = useState([])
     const [species, setSpecies] = useState([])
 
-    console.log(data)
-    console.log(value)
     useEffect(() => {
         getPokemon()
     }, [value])
@@ -39,20 +36,19 @@ const Pokedex = () => {
         //     : setValue(parseInt(value) - 1)
     }
 
-
     const getPokemon = async () => {
         try {
             const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${value}/`
             const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${value}/`
             const pokemonRes = await axios.get(pokemonUrl)
-            // const speciesRes = await axios.get(speciesUrl)
-            setData(pokemonRes.data)
-            // setData(speciesRes.data)
+            const speciesRes = await axios.get(speciesUrl)
+            setPokemon(pokemonRes.data)
+            setSpecies(speciesRes.data)
         } catch (error) {
             console.error(error)
         }
-
     }
+
     return (
         <div className="nes-container with-title">
             <h1 className="title">PokeDex</h1>
@@ -60,8 +56,6 @@ const Pokedex = () => {
                 container
                 spacing={3}
                 alignItems="stretch"
-            // justify="space-evenly"
-            // direction="row"
             >
                 <Grid item xs={12}>
                     <InputForm
@@ -72,26 +66,27 @@ const Pokedex = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <PokemonCard
-                        id={data.id || ''}
-                        name={data.name}
-                        types={data.types || []}
-                        height={data.height}
-                        weight={data.weight}
-                        // sprites={data.sprites.front_default}
+                        id={pokemon.id || ''}
+                        name={pokemon.name}
+                        types={pokemon.types || []}
+                        height={pokemon.height}
+                        weight={pokemon.weight}
+                        // sprites={pokemon.sprites.front_default}
+                        general={species.flavor_text_entries || []}
                         handleIncrement={handleIncrement}
                     />
                 </Grid>
 
                 <Grid item xs={6}>
                     <StatTable
-                        stats={data.stats || []}
+                        stats={pokemon.stats || []}
                     />
                 </Grid>
 
                 <Grid item xs={12}>
                     <MoveList
-                        abilities={data.abilities || []}
-                        moves={data.moves || []}
+                        abilities={pokemon.abilities || []}
+                        moves={pokemon.moves || []}
                     />
                 </Grid>
                 <Grid item xs={12}>

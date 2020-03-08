@@ -5,7 +5,8 @@ import baseUrl from '../../utils/baseURL';
 
 import '../../App.css'
 
-const PokemonCard = ({ id, name, types, height, weight, handleIncrement, sprites }) => {
+const PokemonCard = ({ id, name, types, height, weight, handleIncrement, sprites, general }) => {
+
     return (
         <div className="nes-container with-title">
             <h3 className="title">Pokemon</h3>

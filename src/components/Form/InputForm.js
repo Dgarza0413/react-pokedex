@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
 const InputForm = ({ handleChange, handleClick }) => {
-    console.log(handleChange)
+    // console.log(handleChange)
 
     return (
         <>

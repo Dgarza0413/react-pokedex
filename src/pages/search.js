@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import baseUrl from '../utils/baseURL';
 import axios from 'axios';
 
+// components
+import PokemonCard from '../components/Card/PokemonCard';
+import SummaryCard from '../components/Card/SummaryCard';
+
 import Grid from '@material-ui/core/Grid';
 
-import PokemonCard from '../components/Card/PokemonCard';
 
 import '../App.css'
 
 const Search = () => {
     const [data, setData] = useState([])
 
-    const array = [...new Array(4)].map((e, i) => {
+    const array = [...new Array(5)].map((e, i) => {
         return e = Math.floor(Math.random() * 151) + 1
     })
 
@@ -22,7 +25,7 @@ const Search = () => {
                 axios.get(`https://pokeapi.co/api/v2/pokemon/${e}/`)
                     .then(res => {
                         arr.push(res.data)
-                        setData(arr)
+                        return setData(arr)
                     })
             })
         } catch (error) {
@@ -35,27 +38,28 @@ const Search = () => {
     }, [])
 
     return (
-        <Grid container spacing={3}>
-            {data.map((e, i) => {
-                return (
-                    <>
-                        {
-                            <Grid item={4}>
-                                <div className="card">
-                                    <PokemonCard
-                                        name={e.name}
-                                        types={e.types}
-                                        height={e.height}
-                                        weight={e.weight}
-                                        sprites={e.sprites.front_default}
-                                    />
-                                </div>
-                            </Grid>
-                        }
-                    </>
-                )
-            })}
-        </Grid>
+        <>
+            <Grid container spacing={3}>
+                {data.map((e, i) => {
+                    return (
+                        <>
+                            {
+                                <Grid id={i} item={4}>
+                                    <div className="card">
+                                        <SummaryCard
+                                            name={e.name}
+                                            sprites={e.sprites.front_default} />
+                                    </div>
+                                </Grid>
+                            }
+                        </>
+                    )
+                })}
+                <Grid>
+                    <button type="button" className="nes-btn is-primary">Add more</button>
+                </Grid>
+            </Grid>
+        </>
     )
 }
 
