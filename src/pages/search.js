@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import baseUrl from '../utils/baseURL';
 import axios from 'axios';
 
 // components
-import PokemonCard from '../components/Card/PokemonCard';
 import SummaryCard from '../components/Card/SummaryCard';
-
 import Grid from '@material-ui/core/Grid';
-
-
 import '../App.css'
 
 const Search = () => {
@@ -18,19 +13,15 @@ const Search = () => {
         return e = Math.floor(Math.random() * 151) + 1
     })
 
-    const randomSearch = () => {
-        try {
-            const arr = []
-            array.map((e, i) => {
-                axios.get(`https://pokeapi.co/api/v2/pokemon/${e}/`)
-                    .then(res => {
-                        arr.push(res.data)
-                        return setData(arr)
-                    })
-            })
-        } catch (error) {
-            console.error(error)
-        }
+    const randomSearch = async () => {
+        const arr = []
+        await Promise.all(array.map(async (e, i) => {
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${e}/`)
+                .then(res => {
+                    arr.push(res.data)
+                })
+        }))
+        setData(arr)
     }
 
     useEffect(() => {

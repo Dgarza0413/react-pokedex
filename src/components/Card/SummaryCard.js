@@ -15,9 +15,9 @@ const SummaryCard = ({ sprites, name }) => {
                             <Grid item xs={12}>
                                 <div className="text-center">{name}</div>
                             </Grid>
-                            <a href="#" class="nes-badge">
+                            <div class="nes-badge">
                                 <span class="is-dark">Grd</span>
-                            </a>
+                            </div>
                         </Grid>
                     </Grid>
                 </>}
