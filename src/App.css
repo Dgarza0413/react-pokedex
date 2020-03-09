@@ -40,3 +40,10 @@ table {
 .card {
   width: 15rem;
 }
+
+.pokemonNum {
+  text-align: right;
+}
+.nes-badge{
+  width: 70%;
+}

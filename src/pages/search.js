@@ -8,8 +8,11 @@ import '../App.css'
 
 const Search = () => {
     const [data, setData] = useState([])
+    const [increment, setIncrement] = useState(2)
 
-    const array = [...new Array(5)].map((e, i) => {
+    console.log(data)
+
+    const array = [...new Array(increment)].map((e, i) => {
         return e = Math.floor(Math.random() * 151) + 1
     })
 
@@ -26,28 +29,31 @@ const Search = () => {
 
     useEffect(() => {
         randomSearch()
-    }, [])
+    }, [increment])
 
     return (
         <>
             <Grid container spacing={3}>
                 {data.map((e, i) => {
                     return (
-                        <>
-                            {
-                                <Grid id={i} item={4}>
-                                    <div className="card">
-                                        <SummaryCard
-                                            name={e.name}
-                                            sprites={e.sprites.front_default} />
-                                    </div>
-                                </Grid>
-                            }
-                        </>
+                        <Grid item key={e.id}>
+                            <div className="card">
+                                <SummaryCard
+                                    name={e.name}
+                                    sprites={e.sprites.front_default}
+                                    types={e.types}
+                                    id={e.id}
+                                />
+                            </div>
+                        </Grid>
                     )
                 })}
                 <Grid>
-                    <button type="button" className="nes-btn is-primary">Add more</button>
+                    <button
+                        type="button"
+                        className="nes-btn is-primary"
+                        onClick={() => setIncrement(increment + 3)}
+                    >Add more</button>
                 </Grid>
             </Grid>
         </>

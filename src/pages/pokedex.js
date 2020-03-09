@@ -7,7 +7,6 @@ import InputForm from '../components/Form/InputForm';
 import StatTable from '../components/Table/StatTable';
 import PokemonCard from '../components/Card/PokemonCard';
 import MoveList from '../components/Lists/MoveList';
-import NavBar from '../components/NavBar/NavBar';
 import PokemonMap from '../components/Map/Map';
 
 const Pokedex = () => {
