@@ -1,6 +1,8 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
+import badges from '../Badges/Badges';
+
 const SummaryCard = ({ sprites, name, types, id }) => {
     return (
         <div className="nes-container with-title">
@@ -24,9 +26,7 @@ const SummaryCard = ({ sprites, name, types, id }) => {
                                 types.map((e, i) => {
                                     return (
                                         <Grid item xs={6}>
-                                            <span className="nes-badge" key={i}>
-                                                <span className="is-dark">{e.type.name}</span>
-                                            </span>
+                                            {badges(e.type.name)}
                                         </Grid>
                                     )
                                 })
