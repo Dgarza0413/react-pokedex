@@ -10,8 +10,6 @@ const Search = () => {
     const [data, setData] = useState([])
     const [increment, setIncrement] = useState(2)
 
-    console.log(data)
-
     const array = [...new Array(increment)].map((e, i) => {
         return e = Math.floor(Math.random() * 151) + 1
     })
@@ -48,7 +46,9 @@ const Search = () => {
                         </Grid>
                     )
                 })}
-                <Grid>
+                <Grid container item direction="row"
+                    justify="center"
+                    alignItems="center" xs={12}>
                     <button
                         type="button"
                         className="nes-btn is-primary"
