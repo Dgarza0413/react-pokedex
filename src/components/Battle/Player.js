@@ -5,7 +5,19 @@ const Player = ({ name, id, sprites, stats }) => {
         <div>
             {name}
             <img src={sprites.back_default} alt={name} />
-        </div>
+            {stats.map(e => {
+                return (
+                    (e.stat.name === "hp")
+                        ? <div>
+                            <span>HP:</span>
+                            <progress className="nes-progress"
+                                value={e.base_stat || ''}
+                                max={e.base_stat || ''}
+                            />
+                        </div>
+                        : ''
+                )
+            })}        </div>
     )
 }
 
