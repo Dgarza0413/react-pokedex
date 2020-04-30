@@ -1,9 +1,10 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid';
 
-const AttackOptions = () => {
+const OptionsAttack = () => {
     return (
         <Grid container spacing={3}>
+            {console.log('attack options returned')}
             <Grid item xs={6}>
                 <label>
                     <input type="radio" class="nes-radio" name="answer" checked />
@@ -32,4 +33,4 @@ const AttackOptions = () => {
     )
 }
 
-export default AttackOptions
+export default OptionsAttack
