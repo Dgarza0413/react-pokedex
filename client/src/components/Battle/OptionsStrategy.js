@@ -8,6 +8,8 @@ import Bag from './Bag';
 const StrategyOptions = () => {
     const options = ["Attack", "Bag", "Pokemon", "FLEE"]
     const [checked, setChecked] = useState('init')
+    const [show, setShow] = useState(true)
+
 
     const handleClick = (event) => {
         setChecked(event.target.name)
@@ -24,7 +26,10 @@ const StrategyOptions = () => {
             case "FLEE":
                 return console.log("Flee was selected")
             case "Bag":
-                return <Bag />;
+                return <Bag
+                    show={show}
+                    setShow={setShow}
+                />;
             default:
                 return console.log('default')
         }
