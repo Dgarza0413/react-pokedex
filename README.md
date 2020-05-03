@@ -6,3 +6,5 @@ we are using graphql and apolloserver to manage our pokemon api and possibly man
 
 ## about React
 we can use react to call our apollo queries as well as mutations. Must think about changes in state using usestate vs cache in apollo
+
+## react router
