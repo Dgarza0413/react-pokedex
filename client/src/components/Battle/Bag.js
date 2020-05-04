@@ -3,17 +3,9 @@ import React, { useState } from 'react'
 const Bag = ({ show = true, setShow }) => {
     console.log(show)
 
-    const modal = {
-        display: `${show ? 'inline' : 'none'}`
-    }
+    const modal = { display: `${show ? 'inline' : 'none'}` }
     return (
         <div>
-            {/* <button
-                type="button"
-                class="nes-btn is-primary"
-                onClick={() => setShow(!show)}>
-                Open rounded dialog
-  </button> */}
             <dialog
                 style={modal}
                 className={`nes-dialog is-rounded`}
