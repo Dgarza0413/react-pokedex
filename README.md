@@ -8,3 +8,4 @@ we are using graphql and apolloserver to manage our pokemon api and possibly man
 we can use react to call our apollo queries as well as mutations. Must think about changes in state using usestate vs cache in apollo
 
 ## react router
+we are only placing the socketio in the battle page that is regulated by useeffect
