@@ -15,7 +15,7 @@ const PokemonCard = ({ id, name, types, height, weight, handleIncrement, sprites
                     <Grid container spacing={3} >
                         <Grid container item xs={12} sm={6}>
                             <Grid item xs={12}>
-                                <img src={sprites} />
+                                <img src={sprites.front_default || ""} />
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="text-center">{name}</div>

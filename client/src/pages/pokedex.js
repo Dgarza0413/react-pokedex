@@ -14,6 +14,8 @@ const Pokedex = () => {
     const [pokemon, setPokemon] = useState([])
     const [species, setSpecies] = useState([])
 
+    console.log(pokemon)
+
     useEffect(() => {
         getPokemon()
     }, [value])
@@ -70,7 +72,7 @@ const Pokedex = () => {
                         types={pokemon.types || []}
                         height={pokemon.height}
                         weight={pokemon.weight}
-                        // sprites={pokemon.sprites.front_default}
+                        sprites={pokemon.sprites}
                         general={species.flavor_text_entries || []}
                         handleIncrement={handleIncrement}
                     />
