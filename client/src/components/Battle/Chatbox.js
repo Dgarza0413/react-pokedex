@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Chatbox() {
+const Chatbox = () => {
     return (
         <section class="nes-container">
             <section class="message-list">
@@ -20,3 +20,5 @@ export default function Chatbox() {
         </section>
     )
 }
+
+export default Chatbox 

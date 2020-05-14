@@ -8,6 +8,7 @@ import DialogBox from '../components/Battle/DialogBox'
 import OptionsStrategy from '../components/Battle/OptionsStrategy'
 import OptionsAttack from '../components/Battle/OptionsAttack'
 import Player from '../components/Battle/Player';
+import Chatbox from '../components/Battle/Chatbox';
 
 const Battle = () => {
     const socket = io('http://localhost:3000')
@@ -104,6 +105,9 @@ const Battle = () => {
                     {response.length > 0 && response.map((e, i) => (
                         <div>{e.name}</div>
                     ))}
+                </div>
+                <div>
+                    <Chatbox />
                 </div>
             </div>
         </div>
