@@ -9,3 +9,6 @@ we can use react to call our apollo queries as well as mutations. Must think abo
 
 ## react router
 we are only placing the socketio in the battle page that is regulated by useeffect
+
+## about sequalize and sql
+we will use this to take advantage of graphql and apolloserver
