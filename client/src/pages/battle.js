@@ -11,7 +11,8 @@ import Player from '../components/Battle/Player';
 import Chatbox from '../components/Battle/Chatbox';
 
 const Battle = () => {
-    const socket = io('http://localhost:3000')
+    // const socket = io()
+    const socket = io('http://localhost:3001')
     const [pokemon, setPokemon] = useState([])
     const [response, setResponse] = useState([])
     const [value, setValue] = useState(
@@ -19,7 +20,6 @@ const Battle = () => {
             name: ''
         }
     )
-
     const randomSearch = async () => {
         await axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 151) + 1}/`)
             .then(res => {
@@ -29,7 +29,6 @@ const Battle = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(value)
         socket.emit('chat message', value)
         return false
     }
@@ -46,11 +45,10 @@ const Battle = () => {
 
 
     useEffect(() => {
-        const socket = io('http://localhost:3000')
+        const socket = io('http://localhost:3001')
         socket.on('connect', function (event) {
             console.log('connection made')
         })
-
         socket.on('chat message', function (msg) {
             setResponse(set => [...set, msg]);
         })
@@ -101,14 +99,7 @@ const Battle = () => {
                     />
                     <button>submit</button>
                 </form>
-                <div>
-                    {response.length > 0 && response.map((e, i) => (
-                        <div>{e.name}</div>
-                    ))}
-                </div>
-                <div>
-                    <Chatbox />
-                </div>
+                <Chatbox messages={response} />
             </div>
         </div>
     )

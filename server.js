@@ -1,21 +1,18 @@
-const { ApolloServer } = require("apollo-server");
-const fs = require('fs');
-const path = require('path');
+const express = require('express');
+const app = express();
+const routes = require('./routes');
+const mongoose = require('mongoose');
+const compression = require('compression');
+const PORT = process.env.PORT || 3001;
 
-const app = require('express')()
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(compression());
+
 const http = require('http').createServer(app);
-
-const mongoose = require('mongoose')
-
 const io = require("socket.io")(http);
-// const cfg = require('./config.json');
 
-const filePath = path.join(__dirname, 'typeDefs.gql');
-const typeDefs = fs.readFileSync(filePath, 'utf-8')
-
-const resolvers = require('./resolvers');
-
-const server = new ApolloServer({ typeDefs, resolvers })
+app.use(routes)
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/pokedex";
 mongoose.connect(MONGODB_URI, {
@@ -24,27 +21,23 @@ mongoose.connect(MONGODB_URI, {
     useFindAndModify: false
 });
 
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "client/public/index.html"))
-})
-
 io.on('connection', (socket) => {
     console.log('a user connected');
-
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg)
     })
-
     socket.on('disconnect', () => {
         console.log('user disconnected')
     });
 });
 
-http.listen(3000, () => {
-    console.log('listening on *:3000');
+http.listen(PORT, () => {
+    console.log(`listening on ${PORT}`);
 })
 
-server.listen().then(({ url }) => {
-    console.log(`server listening on ${url}`)
+process.on('SIGINT', () => {
+    mongoose.connection.close().then(() => {
+        console.log("Mongoose disconnected");
+        process.exit(0);
+    })
 })

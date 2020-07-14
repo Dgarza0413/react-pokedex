@@ -1,20 +1,23 @@
 import React from 'react'
 
-const Chatbox = () => {
+const Chatbox = ({ messages }) => {
     return (
-        <section class="nes-container">
-            <section class="message-list">
-                <section class="message -left">
-                    <i class="nes-bcrikko"></i>
-                    <div class="nes-balloon from-left">
-                        <p>Hello NES.css</p>
-                    </div>
-                </section>
-                <section class="message -right">
-                    <div class="nes-balloon from-right">
+        <section className="nes-container">
+            <section className="message-list">
+                {messages.length > 0 && messages.map((e, i) => {
+                    return (
+                        <section key={i} className="message -left">
+                            <div className="nes-balloon from-left">
+                                <p>{e.name}</p>
+                            </div>
+                        </section>
+                    )
+                })}
+                <section className="message -right">
+                    <div className="nes-balloon from-right">
                         <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
                     </div>
-                    <i class="nes-bcrikko"></i>
+                    <i className="nes-bcrikko"></i>
                 </section>
             </section>
         </section>
