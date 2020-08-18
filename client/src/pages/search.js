@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // components
@@ -9,14 +10,29 @@ import '../App.css'
 const Search = () => {
     const [data, setData] = useState([])
     const [increment, setIncrement] = useState(2)
+    const [presentId, setPresentId] = useState([])
 
-    const array = [...new Array(increment)].map((e, i) => {
-        return e = Math.floor(Math.random() * 151) + 1
-    })
+
+    const array = () => {
+        const arr = []
+        for (let i = 0; i < increment; i++) {
+            const numRand = Math.floor(Math.random() * 151) + 1
+            if (presentId.indexOf(numRand) === -1) {
+                arr.push(numRand)
+            } else {
+                console.log('item exists')
+            }
+        }
+        setPresentId(
+            values => {
+                return [...values, ...arr]
+            })
+    }
+
 
     const randomSearch = async () => {
         const arr = []
-        await Promise.all(array.map(async (e, i) => {
+        await Promise.all(presentId.map(async (e) => {
             await axios.get(`https://pokeapi.co/api/v2/pokemon/${e}/`)
                 .then(res => {
                     arr.push(res.data)
@@ -27,7 +43,7 @@ const Search = () => {
 
     useEffect(() => {
         randomSearch()
-    }, [increment])
+    }, [presentId])
 
     return (
         <>
@@ -36,23 +52,30 @@ const Search = () => {
                     return (
                         <Grid item key={e.id}>
                             <div className="card">
-                                <SummaryCard
-                                    name={e.name}
-                                    sprites={e.sprites.front_default}
-                                    types={e.types}
-                                    id={e.id}
-                                />
+                                <Link to={`/search/${e.id}/pokedex`}>
+                                    <SummaryCard
+                                        name={e.name}
+                                        sprites={e.sprites.front_default}
+                                        types={e.types}
+                                        id={e.id}
+                                    />
+                                </Link>
                             </div>
                         </Grid>
                     )
                 })}
-                <Grid container item direction="row"
+                <Grid
+                    container
+                    item
+                    direction="row"
                     justify="center"
-                    alignItems="center" xs={12}>
+                    alignItems="center"
+                    xs={12}
+                >
                     <button
                         type="button"
                         className="nes-btn is-primary"
-                        onClick={() => setIncrement(increment + 3)}
+                        onClick={array}
                     >Add more</button>
                 </Grid>
             </Grid>

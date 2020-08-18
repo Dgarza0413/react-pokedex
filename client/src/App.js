@@ -15,7 +15,7 @@ const App = () => {
             <Router>
                 <NavBar />
                 <Switch>
-                    <Route exact path="/pokedex" component={pokedex} />
+                    <Route exact path="/search/:id/pokedex" component={pokedex} />
                     <Route exact path="/search" component={search} />
                     <Route exact path="/battle" component={battle} />
                     <Route exact path="/signin" component={signin} />
