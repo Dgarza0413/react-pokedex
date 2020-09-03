@@ -32,12 +32,13 @@ const Search = () => {
 
     const randomSearch = async () => {
         const arr = []
-        await Promise.all(presentId.map(async (e) => {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon/${e}/`)
-                .then(res => {
-                    arr.push(res.data)
-                })
-        }))
+        await Promise.all(
+            presentId.map(
+                async (e) => {
+                    const url = await `https://pokeapi.co/api/v2/pokemon/${e}/`
+                    const res = await axios.get(url)
+                    await arr.push(res.data)
+                }))
         setData(arr)
     }
 
@@ -47,19 +48,20 @@ const Search = () => {
 
     return (
         <>
-            <Grid container spacing={3}>
+            <Grid
+                container
+                spacing={3}>
                 {data.map((e, i) => {
                     return (
-                        <Grid item key={e.id}>
+                        <Grid item
+                            key={e.id}>
                             <div className="card">
-                                <Link to={`/search/${e.id}/pokedex`}>
-                                    <SummaryCard
-                                        name={e.name}
-                                        sprites={e.sprites.front_default}
-                                        types={e.types}
-                                        id={e.id}
-                                    />
-                                </Link>
+                                <SummaryCard
+                                    name={e.name}
+                                    sprites={e.sprites.front_default}
+                                    types={e.types}
+                                    id={e.id}
+                                />
                             </div>
                         </Grid>
                     )

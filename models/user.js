@@ -12,8 +12,12 @@ const UserSchema = new Schema({
     password: {
         type: String
     },
-    authType: String,
-    username: String
+    authType: {
+        type: String
+    },
+    username: {
+        type: String
+    }
     //   googleId: String
 });
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
 import badges from '../Badges/Badges';
+import { Link } from 'react-router-dom';
 
 const SummaryCard = ({ sprites, name, types, id }) => {
     return (
@@ -18,7 +19,9 @@ const SummaryCard = ({ sprites, name, types, id }) => {
                                 <img alt={name} src={sprites} />
                             </Grid>
                             <Grid item xs={12}>
+                                {/* <Link to={`/search/${id}/pokedex`}> */}
                                 <div className="text-center">{name}</div>
+                                {/* </Link> */}
                             </Grid>
                         </Grid>
                         <Grid container item xs={12}>
@@ -38,4 +41,4 @@ const SummaryCard = ({ sprites, name, types, id }) => {
     )
 }
 
-export default SummaryCard;
+export default React.memo(SummaryCard);

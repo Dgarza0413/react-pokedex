@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { signIn } from '../utils/API';
 import API from '../utils/baseURL';
 
 export default function Signin() {
@@ -23,8 +24,16 @@ export default function Signin() {
     }
 
     return (
-        <div>
-            <h1>Sign in</h1>
+        <div
+            style={
+                {
+                    maxWidth: '500px',
+                    margin: 'auto'
+                }
+            }
+            className="nes-container with-title"
+        >
+            <h1 className="title">Sign in</h1>
             <form
                 onSubmit={handleSumbit}
                 ref={formEl}
@@ -33,7 +42,7 @@ export default function Signin() {
                     <label>name</label>
                     <input
                         className="nes-input"
-                        name="name"
+                        name="username"
                         placeholder={"Pikachu"}
                         ref={name}
                     />
@@ -68,9 +77,12 @@ export default function Signin() {
                     />
                 </div>
                 <button
+                    onClick={signIn}
+                    style={{ margin: '10px 5px' }}
                     className="nes-btn is-primary"
                     type="submit"
                 >Submit</button>
+                <span class="nes-text is-success">No account? Sign Up here!</span>
             </form>
         </div>
     )

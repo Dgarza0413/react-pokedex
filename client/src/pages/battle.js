@@ -54,6 +54,8 @@ const Battle = () => {
         })
         randomSearch()
     }, [])
+
+
     return (
         <div className="nes-container with-title">
             <h3 className="title">Battle</h3>

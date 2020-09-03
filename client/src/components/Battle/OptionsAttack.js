@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 const OptionsAttack = () => {
     return (
         <Grid container spacing={3}>
-            {console.log('attack options returned')}
             <Grid item xs={6}>
                 <label>
                     <input type="radio" class="nes-radio" name="answer" checked />

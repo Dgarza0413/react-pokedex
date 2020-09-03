@@ -79,9 +79,7 @@ const Pokedex = () => {
                 </Grid>
 
                 <Grid item xs={6}>
-                    <StatTable
-                        stats={pokemon.stats || []}
-                    />
+                    <StatTable stats={pokemon.stats || []} />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -90,6 +88,7 @@ const Pokedex = () => {
                         moves={pokemon.moves || []}
                     />
                 </Grid>
+
                 <Grid item xs={12}>
                     <PokemonMap />
                 </Grid>

@@ -1,3 +1,31 @@
+const userController = require('../../controllers/users');
+
+// /api/addUser
+router.route("/addUser")
+    .get(userController.findAll)
+    .post(userController.create);
+
+router.post('/login', passport.authenticate("local"), (req, res) => {
+    res.json(req.user)
+})
+
+router.get('/logout', (req, res) => {
+    // console.log("logging out");
+    req.logout();
+    // res.redirect("/")
+    res.sendStatus(200);
+});
+
+router.get('/user/me', function (req, res) {
+    if (req.user) {
+        res.json({
+            email: req.user.email,
+            username: req.user.username
+        })
+    } else {
+        res.sendStatus(401)
+    }
+})
 // const { google } = require("googleapis")
 // const google = require("googleapis").google
 // const db = require("../../models")
