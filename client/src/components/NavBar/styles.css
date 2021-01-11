@@ -1,0 +1,18 @@
+li {
+    list-style-type: none;
+}
+
+.nav-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-section-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-item{
+    margin: 0px 10px;
+}

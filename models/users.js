@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
-const passportLocalMongoose = require("passport-local-mongoose");
+// const passportLocalMongoose = require("passport-local-mongoose");
 
 const UserSchema = new Schema({
     email: {
@@ -10,15 +10,17 @@ const UserSchema = new Schema({
         required: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     authType: {
         type: String
     },
     username: {
-        type: String
+        type: String,
+        unique: true,
+        required: true,
     }
-    //   googleId: String
 });
 
 UserSchema.methods.checkPassword = function (password) {
@@ -38,7 +40,7 @@ UserSchema.pre('save', function (next) {
     }
 });
 
-UserSchema.plugin(passportLocalMongoose);
+// UserSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model("User", UserSchema);
 

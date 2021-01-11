@@ -1,25 +1,27 @@
-import React, { useRef, useState } from 'react';
-import { signIn } from '../utils/API';
-import API from '../utils/baseURL';
+import React, { useContext } from 'react';
 
-export default function Signin() {
-    const name = useRef()
-    const email = useRef()
-    const password = useRef()
-    const confirmPW = useRef()
-    const formEl = useRef()
+import { UserContext } from '../utils/UserContext';
 
-    const handleSumbit = (e) => {
+import { Link } from 'react-router-dom';
+
+import useInputChange from '../hooks/useInputChange';
+import useFetch from '../hooks/useFetch';
+import useAuth from '../hooks/useAuth';
+
+export default function Login() {
+    const [state, setState] = useContext(UserContext)
+
+    const [value, handleInputChange] = useInputChange();
+    const [response, error, isLoading, handlePostFetch] = useFetch();
+    const [handleLogin] = useAuth();
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        if (password.current.value === confirmPW.current.value) {
-            console.log("password matches")
-            API.checkUser({
-                name: name.current.value,
-                email: email.current.value,
-                password: password.current.value
-            })
-        } else {
-            console.log("password does not match")
+        try {
+            const token = await handlePostFetch(value, '/api/login')
+            await handleLogin(token)
+        } catch (error) {
+            console.error(error, "submit process was unsuccessful")
         }
     }
 
@@ -34,56 +36,62 @@ export default function Signin() {
             className="nes-container with-title"
         >
             <h1 className="title">Sign in</h1>
-            <form
-                onSubmit={handleSumbit}
-                ref={formEl}
-            >
+            <form onSubmit={handleSubmit}>
                 <div className="nes-field">
-                    <label>name</label>
+                    <label>Username</label>
                     <input
                         className="nes-input"
                         name="username"
                         placeholder={"Pikachu"}
-                        ref={name}
+                        onChange={handleInputChange}
                     />
                 </div>
-                <div className="nes-field">
+                {/* <div className="nes-field">
                     <label>email</label>
                     <input
                         className="nes-input"
                         name="email"
                         placeholder={"pikachu@pokeball.com"}
-                        ref={email}
+                        onChange={handleInputChange}
                     />
-                </div>
+                </div> */}
                 <div className='nes-field'>
                     <label>password</label>
                     <input
                         className="nes-input"
                         name="password"
                         placeholder={"something strong"}
+                        onChange={handleInputChange}
                         type="password"
-                        ref={password}
                     />
                 </div>
-                <div className="nes-field">
+                {/* <div className="nes-field">
                     <label>confirm password</label>
                     <input
                         className="nes-input"
                         name="confirm"
                         placeholder={"like really strong"}
+                        onChange={handleInputChange}
                         type="password"
-                        ref={confirmPW}
                     />
-                </div>
+                </div> */}
                 <button
-                    onClick={signIn}
                     style={{ margin: '10px 5px' }}
                     className="nes-btn is-primary"
                     type="submit"
                 >Submit</button>
-                <span class="nes-text is-success">No account? Sign Up here!</span>
+                {/* {
+                    isLoading
+                        ? <i class="nes-pokeball"></i>
+                        : ""
+                } */}
+
             </form>
+            <span className="nes-text is-success">No account? Sign Up
+            <Link to={'/signup'}>
+                    here!
+            </Link>
+            </span>
         </div>
     )
 }

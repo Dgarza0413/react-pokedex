@@ -14,8 +14,6 @@ const Pokedex = () => {
     const [pokemon, setPokemon] = useState([])
     const [species, setSpecies] = useState([])
 
-    console.log(pokemon)
-
     useEffect(() => {
         getPokemon()
     }, [value])
